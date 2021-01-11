@@ -2,6 +2,7 @@ from dataclasses import dataclass
 import requests
 import json
 import random
+import sys
 
 
 @dataclass
@@ -73,19 +74,23 @@ class vizualizer:
         print(booster_cards)
 
 
-b_m = booster_modifier()
-viz = vizualizer()
 
-booster = booster_string()
-print(booster)
+if __name__ == '__main__':
+    b_m = booster_modifier()
+    viz = vizualizer()
+    booster = booster_string()
 
-# b_m.mythicify(booster, odds=[1,1])
-b_m.mythicify(booster, 'lea')
+    print(booster)
 
-# b_m.remove(booster, -1)
-# print(booster)
+    set = sys.argv[1]
 
-# b_m.add(booster, 'm', -1)
-print(booster)
+    # b_m.mythicify(booster, odds=[1,1])
+    # b_m.mythicify(booster, 'lea')
 
-# viz.show(booster, 'kld')
+    # b_m.remove(booster, -1)
+    # print(booster)
+
+    # b_m.add(booster, 'm', -1)
+    # print(booster)
+
+    viz.show(booster, set)
