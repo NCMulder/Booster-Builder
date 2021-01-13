@@ -3,6 +3,7 @@ import requests
 import json
 import random
 import sys
+import time
 
 
 @dataclass
@@ -37,6 +38,10 @@ class booster_modifier:
         split_booster = booster.string.split('.')
         del split_booster[position:position + 1]
         booster.string = '.'.join(split_booster)
+
+    def replace(self, booster, position, element):
+        self.remove(booster, position)
+        self.add(booster, element, position)
 
     def mythicify(self, booster, set=None, odds=None):
         if set:
@@ -90,9 +95,47 @@ class booster_modifier:
         self.remove(booster, x_pos)
         self.add(booster, foil_rarity + '*', -1)
 
+    def add_basic(self, booster, set=None):
+        elements = booster.string.split('.')
+        # For Alpha, replace 5 out of 121 rares
+        # and 47/121 commons
+        # For Beta and Unlimited, replace 4 out of 121 rares
+        # For Alpha, Beta, Unlimited and Revised,
+        # replace 26 out of 121 uncommons
+        # For Beta, Unlimited and Revised, replace 46/121 commons
+        if set in ['LEA', 'LEB', '2ED', '3ED', 'SUM', 'FBB']:
+            for i, element in enumerate(elements):
+                # Uncommons
+                if element == 'u':
+                    odds = [26, 96]
+                # Rares
+                # TODO: Force Island
+                elif element in ['r', 'm']:
+                    if set == 'LEA':
+                        odds = [5, 116]
+                    elif set in ['LEB', '2ED']:
+                        odds = [4, 117]
+                    else:
+                        odds = [0, 121]
+                # Commons
+                else:
+                    if set == 'LEA':
+                        odds = [47, 74]
+                    else:
+                        odds = [46, 75]
+
+                if random.choices([True, False], odds)[0]:
+                    self.replace(booster, i, 'b')
+        else:
+            # A basic replaces a common in standard sets
+            x_pos = elements.index('c')
+            self.remove(booster, x_pos)
+            self.add(booster, 'b', -1)
+
 
 class vizualizer:
     def get_cards(self, query):
+        time.sleep(0.1)
         url = f'https://api.scryfall.com/cards/search?q={query}+is:booster'
         response = requests.get(url).json()
         if response['object'] != 'list':
@@ -106,8 +149,24 @@ class vizualizer:
             else:
                 break
         return cards
+    
+    def get_card_image(self, cardname='', version='normal', uri=''):
+        """Get a card image from Scryfall based on card name.
+        See https://scryfall.com/docs/api/images
+        """
 
-    def show(self, booster, set):
+        time.sleep(0.1)
+        if uri:
+            result = requests.get(uri).content
+        else:
+            result = requests.get(
+                'https://api.scryfall.com/cards/'
+                f'named?exact={cardname}&format=image&version={version}'
+            ).content
+
+        return result
+
+    def print(self, booster, set):
         queries = booster_parser.parse(booster)
         booster_cards = []
         for query in queries:
@@ -115,6 +174,39 @@ class vizualizer:
             card = random.choice(cards)
             booster_cards.append(card['name'])
         print(booster_cards)
+
+    def show(self, booster, set):
+        # Image setup
+        from PIL import Image
+        from io import BytesIO
+
+        card_size = [488, 680]
+        queries = booster_parser.parse(booster)
+
+        image = Image.new(
+            'RGB',
+            [card_size[0] * 5,
+             card_size[1] * -(-len(queries) // 5)]
+        )
+
+        for i, query in enumerate(queries):
+            cards = self.get_cards(query + f'+s:{set}')
+            card = random.choice(cards)
+
+            image_box = (
+                card_size[0] * (i % 5),
+                card_size[1] * (i // 5)
+            )
+
+            front_uri = card['image_uris']['normal']
+
+            card_image = self.get_card_image(uri=front_uri)
+            image.paste(
+                Image.open(BytesIO(card_image)),
+                box=image_box
+            )
+
+        image.show()
 
 
 if __name__ == '__main__':
@@ -135,8 +227,9 @@ if __name__ == '__main__':
     # b_m.add(booster, 'm', -1)
     # print(booster)
 
-    b_m.mythicify(booster)
-    b_m.foilify(booster)
+    # b_m.mythicify(booster)
+    # b_m.foilify(booster)
+    b_m.add_basic(booster, set)
     print(booster)
 
     # foil_rarities = []
@@ -147,5 +240,4 @@ if __name__ == '__main__':
     # from collections import Counter
     # print(Counter(foil_rarities))
 
-
-    # viz.show(booster, set)
+    viz.show(booster, set)
