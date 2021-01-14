@@ -1,0 +1,656 @@
+LEA,Limited Edition Alpha,core,B
+LEB,Limited Edition Beta,core,B
+2ED,Unlimited Edition,core,B
+CED,Collectors’ Edition,memorabilia,Z
+CEI,Intl. Collectors’ Edition,memorabilia,Z
+ARN,Arabian Nights,expansion,Y
+ATQ,Antiquities,expansion,Y
+FBB,Foreign Black Border,core,B
+3ED,Revised Edition,core,B
+LEG,Legends,expansion,
+SUM,Summer Magic / Edgar,core,B
+PDRC,Dragon Con,promo,Z
+DRK,The Dark,expansion,Y
+PHPR,HarperPrism Book Promos,promo,Z
+FEM,Fallen Empires,expansion,Y
+PMEI,Magazine Inserts,promo,Z
+PLGM,DCI Legend Membership,promo,Z
+4ED,Fourth Edition,core,
+4BB,Fourth Edition Foreign Black Border,core,
+ICE,Ice Age,expansion,
+CHR,Chronicles,masters,Y
+REN,Renaissance,masters,Y
+RIN,Rinascimento,masters,Y
+HML,Homelands,expansion,Y
+PTC,Pro Tour Collector Set,memorabilia,Z
+ALL,Alliances,expansion,Y
+RQS,Rivals Quick Start Set,box,Z
+PARL,Arena League 1996,promo,Z
+PCEL,Celebration Cards,memorabilia,Z
+PRED,Redemption Program,promo,Z
+MIR,Mirage,expansion,
+MGB,Multiverse Gift Box,box,Z
+ITP,Introductory Two-Player Set,starter,Z
+VIS,Visions,expansion,
+5ED,Fifth Edition,core,
+PAST,Astral Cards,box,Z
+PMIC,MicroProse Promos,memorabilia,Z
+POR,Portal,starter,X
+PPOD,Portal Demo Game,starter,X
+PVAN,Vanguard Series,vanguard,X
+WTH,Weatherlight,expansion,X
+WC97,World Championship Decks 1997,memorabilia,X
+TMP,Tempest,expansion,X
+PTMP,Tempest Promos,promo,X
+JGP,Judge Gift Cards 1998,promo,X
+STH,Stronghold,expansion,X
+PSTH,Stronghold Promos,promo,X
+EXO,Exodus,expansion,X
+PEXO,Exodus Promos,promo,X
+P02,Portal Second Age,starter,X
+UGL,Unglued,funny,X
+TUGL,Unglued Tokens,token,X
+WC98,World Championship Decks 1998,memorabilia,X
+PALP,Asia Pacific Land Program,promo,X
+USG,Urza's Saga,expansion,X
+PUSG,Urza's Saga Promos,promo,X
+ATH,Anthologies,box,X
+G99,Judge Gift Cards 1999,promo,X
+PAL99,Arena League 1999,promo,X
+ULG,Urza's Legacy,expansion,X
+PULG,Urza's Legacy Promos,promo,X
+6ED,Classic Sixth Edition,core,X
+UDS,Urza's Destiny,expansion,X
+PUDS,Urza's Destiny Promos,promo,X
+S99,Starter 1999,starter,X
+PPTK,Portal: Three Kingdoms Promos,promo,X
+PTK,Portal Three Kingdoms,starter,X
+PGRU,Guru,promo,X
+PWOR,World Championship Promos,promo,X
+WC99,World Championship Decks 1999,memorabilia,X
+PWOS,Wizards of the Coast Online Store,promo,X
+MMQ,Mercadian Masques,expansion,X
+PMMQ,Mercadian Masques Promos,promo,X
+BRB,Battle Royale Box Set,box,X
+PSUS,Junior Super Series,promo,X
+G00,Judge Gift Cards 2000,promo,X
+FNM,Friday Night Magic 2000,promo,X
+PAL00,Arena League 2000,promo,X
+PELP,European Land Program,promo,X
+NEM,Nemesis,expansion,X
+PNEM,Nemesis Promos,promo,X
+S00,Starter 2000,starter,X
+PCY,Prophecy,expansion,X
+PPCY,Prophecy Promos,promo,X
+WC00,World Championship Decks 2000,memorabilia,X
+BTD,Beatdown Box Set,box,X
+INV,Invasion,expansion,X
+PINV,Invasion Promos,promo,X
+G01,Judge Gift Cards 2001,promo,X
+F01,Friday Night Magic 2001,promo,X
+MPR,Magic Player Rewards 2001,promo,X
+PAL01,Arena League 2001,promo,X
+PLS,Planeshift,expansion,X
+PPLS,Planeshift Promos,promo,X
+7ED,Seventh Edition,core,X
+APC,Apocalypse,expansion,X
+PAPC,Apocalypse Promos,promo,X
+PSDG,Sega Dreamcast Cards,box,X
+WC01,World Championship Decks 2001,memorabilia,X
+ODY,Odyssey,expansion,X
+PODY,Odyssey Promos,promo,X
+DKM,Deckmasters,box,X
+G02,Judge Gift Cards 2002,promo,X
+F02,Friday Night Magic 2002,promo,X
+PR2,Magic Player Rewards 2002,promo,X
+PAL02,Arena League 2002,promo,X
+TOR,Torment,expansion,X
+PTOR,Torment Promos,promo,X
+JUD,Judgment,expansion,X
+PJUD,Judgment Promos,promo,X
+PRM,Magic Online Promos,promo,X
+PHJ,Hobby Japan Promos,promo,X
+WC02,World Championship Decks 2002,memorabilia,X
+ONS,Onslaught,expansion,X
+P03,Magic Player Rewards 2003,promo,X
+OVNT,Vintage Championship,memorabilia,X
+F03,Friday Night Magic 2003,promo,X
+G03,Judge Gift Cards 2003,promo,X
+PAL03,Arena League 2003,promo,X
+PJJT,Japan Junior Tournament,promo,X
+PMOA,Magic Online Avatars,vanguard,X
+LGN,Legions,expansion,X
+PLGN,Legions Promos,promo,X
+PONS,Onslaught Promos,promo,X
+SCG,Scourge,expansion,X
+PSCG,Scourge Promos,promo,X
+8ED,Eighth Edition,core,X
+P8ED,Eighth Edition Promos,promo,X
+WC03,World Championship Decks 2003,memorabilia,X
+MRD,Mirrodin,expansion,X
+P04,Magic Player Rewards 2004,promo,X
+G04,Judge Gift Cards 2004,promo,X
+F04,Friday Night Magic 2004,promo,X
+PAL04,Arena League 2004,promo,X
+DST,Darksteel,expansion,X
+5DN,Fifth Dawn,expansion,X
+PMRD,Mirrodin Promos,promo,X
+P5DN,Fifth Dawn Promos,promo,X
+PDST,Darksteel Promos,promo,X
+WC04,World Championship Decks 2004,memorabilia,X
+CHK,Champions of Kamigawa,expansion,X
+PCHK,Champions of Kamigawa Promos,promo,X
+UNH,Unhinged,funny,X
+PUNH,Unhinged Promos,promo,X
+F05,Friday Night Magic 2005,promo,X
+G05,Judge Gift Cards 2005,promo,X
+P05,Magic Player Rewards 2005,promo,X
+PJSE,Junior Series Europe,promo,X
+PAL05,Arena League 2005,promo,X
+PMPS,Magic Premiere Shop 2005,promo,X
+BOK,Betrayers of Kamigawa,expansion,X
+PBOK,Betrayers of Kamigawa Promos,promo,X
+SOK,Saviors of Kamigawa,expansion,X
+PSOK,Saviors of Kamigawa Promos,promo,X
+9ED,Ninth Edition,core,X
+P9ED,Ninth Edition Promos,promo,X
+PSAL,Salvat 2005,box,X
+RAV,Ravnica: City of Guilds,expansion,X
+PRAV,Ravnica: City of Guilds Promos,promo,X
+P2HG,Two-Headed Giant Tournament,promo,X
+F06,Friday Night Magic 2006,promo,X
+G06,Judge Gift Cards 2006,promo,X
+PGTW,Gateway 2006,promo,X
+PHUK,Hachette UK,box,X
+P06,Magic Player Rewards 2006,promo,X
+PJAS,Junior APAC Series,promo,X
+PMPS06,Magic Premiere Shop 2006,promo,X
+PAL06,Arena League 2006,promo,X
+GPT,Guildpact,expansion,X
+PGPT,Guildpact Promos,promo,X
+PCMP,Champs and States,promo,X
+DIS,Dissension,expansion,X
+PDIS,Dissension Promos,promo,X
+CSP,Coldsnap,expansion,X
+CST,Coldsnap Theme Decks,box,X
+PCSP,Coldsnap Promos,promo,X
+TSB,Time Spiral Timeshifted,expansion,X
+TSP,Time Spiral,expansion,X
+PTSP,Time Spiral Promos,promo,X
+HHO,Happy Holidays,funny,X
+F07,Friday Night Magic 2007,promo,X
+P07,Magic Player Rewards 2007,promo,X
+G07,Judge Gift Cards 2007,promo,X
+PMPS07,Magic Premiere Shop 2007,promo,X
+PG07,Gateway 2007,promo,X
+PRES,Resale Promos,promo,X
+PLC,Planar Chaos,expansion,X
+PPLC,Planar Chaos Promos,promo,X
+PPRO,Pro Tour Promos,promo,X
+PGPX,Grand Prix Promos,promo,X
+FUT,Future Sight,expansion,X
+PFUT,Future Sight Promos,promo,X
+T10E,Tenth Edition Tokens,token,X
+P10E,Tenth Edition Promos,promo,X
+10E,Tenth Edition,core,X
+PSUM,Summer of Magic,promo,X
+ME1,Masters Edition,masters,X
+TLRW,Lorwyn Tokens,token,X
+LRW,Lorwyn,expansion,X
+PLRW,Lorwyn Promos,promo,X
+TDD1,Duel Decks: Elves vs. Goblins Tokens,token,X
+DD1,Duel Decks: Elves vs. Goblins,duel_deck,X
+P08,Magic Player Rewards 2008,promo,X
+F08,Friday Night Magic 2008,promo,X
+G08,Judge Gift Cards 2008,promo,X
+PG08,Gateway 2008,promo,X
+PMPS08,Magic Premiere Shop 2008,promo,X
+TMOR,Morningtide Tokens,token,X
+MOR,Morningtide,expansion,X
+PMOR,Morningtide Promos,promo,X
+P15A,15th Anniversary Cards,promo,X
+SHM,Shadowmoor,expansion,X
+TSHM,Shadowmoor Tokens,token,X
+PSHM,Shadowmoor Promos,promo,X
+EVE,Eventide,expansion,X
+TEVE,Eventide Tokens,token,X
+PEVE,Eventide Promos,promo,X
+DRB,From the Vault: Dragons,from_the_vault,X
+ME2,Masters Edition II,masters,X
+PWPN,Wizards Play Network 2008,promo,X
+TALA,Shards of Alara Tokens,token,X
+ALA,Shards of Alara,expansion,X
+PALA,Shards of Alara Promos,promo,X
+DD2,Duel Decks: Jace vs. Chandra,duel_deck,X
+TDD2,Duel Decks: Jace vs. Chandra Tokens,token,X
+F09,Friday Night Magic 2009,promo,X
+G09,Judge Gift Cards 2009,promo,X
+P09,Magic Player Rewards 2009,promo,X
+PMPS09,Magic Premiere Shop 2009,promo,X
+PDTP,Duels of the Planeswalkers 2009 Promos ,promo,X
+PWP09,Wizards Play Network 2009,promo,X
+PBOOK,Miscellaneous Book Promos,promo,X
+CON,Conflux,expansion,X
+TCON,Conflux Tokens,token,X
+PCON,Conflux Promos,promo,X
+PURL,URL/Convention Promos,promo,X
+TDDC,Duel Decks: Divine vs. Demonic Tokens,token,X
+DDC,Duel Decks: Divine vs. Demonic,duel_deck,X
+ARB,Alara Reborn,expansion,X
+TARB,Alara Reborn Tokens,token,X
+PARB,Alara Reborn Promos,promo,X
+PM10,Magic 2010 Promos,promo,X
+TM10,Magic 2010 Tokens,token,X
+M10,Magic 2010,core,X
+V09,From the Vault: Exiled,from_the_vault,X
+PHOP,Promotional Planes,promo,X
+HOP,Planechase,planechase,X
+OHOP,Planechase Planes,planechase,X
+ME3,Masters Edition III,masters,X
+ZEN,Zendikar,expansion,X
+TZEN,Zendikar Tokens,token,X
+PZEN,Zendikar Promos,promo,X
+DDD,Duel Decks: Garruk vs. Liliana,duel_deck,X
+TDDD,Duel Decks: Garruk vs. Liliana Tokens,token,X
+H09,Premium Deck Series: Slivers,premium_deck,X
+G10,Judge Gift Cards 2010,promo,X
+F10,Friday Night Magic 2010,promo,X
+P10,Magic Player Rewards 2010,promo,X
+PMPS10,Magic Premiere Shop 2010,promo,X
+PWP10,Wizards Play Network 2010,promo,X
+PDP10,Duels of the Planeswalkers 2010 Promos ,promo,X
+TWWK,Worldwake Tokens,token,X
+WWK,Worldwake,expansion,X
+PWWK,Worldwake Promos,promo,X
+DDE,Duel Decks: Phyrexia vs. the Coalition,duel_deck,X
+TDDE,Duel Decks: Phyrexia vs. the Coalition Tokens,token,X
+ROE,Rise of the Eldrazi,expansion,X
+TROE,Rise of the Eldrazi Tokens,token,X
+PROE,Rise of the Eldrazi Promos,promo,X
+DPA,Duels of the Planeswalkers,box,X
+PARC,Promotional Schemes,archenemy,X
+ARC,Archenemy,archenemy,X
+OARC,Archenemy Schemes,archenemy,X
+PM11,Magic 2011 Promos,promo,X
+M11,Magic 2011,core,X
+TM11,Magic 2011 Tokens,token,X
+V10,From the Vault: Relics,from_the_vault,X
+TDDF,Duel Decks: Elspeth vs. Tezzeret Tokens,token,X
+DDF,Duel Decks: Elspeth vs. Tezzeret,duel_deck,X
+PSOM,Scars of Mirrodin Promos,promo,X
+SOM,Scars of Mirrodin,expansion,X
+TSOM,Scars of Mirrodin Tokens,token,X
+TD0,Magic Online Theme Decks,box,X
+PD2,Premium Deck Series: Fire and Lightning,premium_deck,X
+OLGC,Legacy Championship,memorabilia,X
+F11,Friday Night Magic 2011,promo,X
+PS11,Salvat 2011,box,X
+G11,Judge Gift Cards 2011,promo,X
+P11,Magic Player Rewards 2011,promo,X
+PWP11,Wizards Play Network 2011,promo,X
+PDP12,Duels of the Planeswalkers 2012 Promos ,promo,X
+PMPS11,Magic Premiere Shop 2011,promo,X
+ME4,Masters Edition IV,masters,X
+PMBS,Mirrodin Besieged Promos,promo,X
+TMBS,Mirrodin Besieged Tokens,token,X
+MBS,Mirrodin Besieged,expansion,X
+TDDG,Duel Decks: Knights vs. Dragons Tokens,token,X
+DDG,Duel Decks: Knights vs. Dragons,duel_deck,X
+PNPH,New Phyrexia Promos,promo,X
+TNPH,New Phyrexia Tokens,token,X
+NPH,New Phyrexia,expansion,X
+TD2,Duel Decks: Mirrodin Pure vs. New Phyrexia,duel_deck,X
+PCMD,Commander 2011 Launch Party,memorabilia,X
+CMD,Commander 2011,commander,X
+OCMD,Commander 2011 Oversized,memorabilia,X
+PM12,Magic 2012 Promos,promo,X
+TM12,Magic 2012 Tokens,token,X
+M12,Magic 2012,core,X
+V11,From the Vault: Legends,from_the_vault,X
+TDDH,Duel Decks: Ajani vs. Nicol Bolas Tokens,token,X
+DDH,Duel Decks: Ajani vs. Nicol Bolas,duel_deck,X
+PISD,Innistrad Promos,promo,X
+TISD,Innistrad Tokens,token,X
+ISD,Innistrad,expansion,X
+PD3,Premium Deck Series: Graveborn,premium_deck,X
+J12,Judge Gift Cards 2012,promo,X
+F12,Friday Night Magic 2012,promo,X
+L12,League Tokens 2012,token,X
+PDP13,Duels of the Planeswalkers 2013 Promos ,promo,X
+PWP12,Wizards Play Network 2012,promo,X
+PIDW,IDW Comics 2012,promo,X
+PDKA,Dark Ascension Promos,promo,X
+DKA,Dark Ascension,expansion,X
+TDKA,Dark Ascension Tokens,token,X
+TDDI,Duel Decks: Venser vs. Koth Tokens,token,X
+DDI,Duel Decks: Venser vs. Koth,duel_deck,X
+PAVR,Avacyn Restored Promos,promo,X
+PHEL,Open the Helvault,promo,X
+AVR,Avacyn Restored,expansion,X
+TAVR,Avacyn Restored Tokens,token,X
+PC2,Planechase 2012,planechase,X
+OPC2,Planechase 2012 Planes,planechase,X
+PM13,Magic 2013 Promos,promo,X
+M13,Magic 2013,core,X
+TM13,Magic 2013 Tokens,token,X
+V12,From the Vault: Realms,from_the_vault,X
+TDDJ,Duel Decks: Izzet vs. Golgari Tokens,token,X
+DDJ,Duel Decks: Izzet vs. Golgari,duel_deck,X
+TRTR,Return to Ravnica Tokens,token,X
+PRTR,Return to Ravnica Promos,promo,X
+RTR,Return to Ravnica,expansion,X
+CM1,Commander's Arsenal,commander,X
+OCM1,Commander's Arsenal Oversized,memorabilia,X
+F13,Friday Night Magic 2013,promo,X
+J13,Judge Gift Cards 2013,promo,X
+L13,League Tokens 2013,token,X
+PI13,IDW Comics 2013,promo,X
+PDP14,Duels of the Planeswalkers 2014 Promos ,promo,X
+PGTC,Gatecrash Promos,promo,X
+TGTC,Gatecrash Tokens,token,X
+GTC,Gatecrash,expansion,X
+TDDK,Duel Decks: Sorin vs. Tibalt Tokens,token,X
+DDK,Duel Decks: Sorin vs. Tibalt,duel_deck,X
+PWCQ,World Magic Cup Qualifiers,promo,X
+PDGM,Dragon's Maze Promos,promo,X
+TDGM,Dragon's Maze Tokens,token,X
+DGM,Dragon's Maze,expansion,X
+MMA,Modern Masters,masters,X
+TMMA,Modern Masters Tokens,token,X
+PSDC,San Diego Comic-Con 2013,promo,X
+PM14,Magic 2014 Promos,promo,X
+M14,Magic 2014,core,X
+TM14,Magic 2014 Tokens,token,X
+V13,From the Vault: Twenty,from_the_vault,X
+DDL,Duel Decks: Heroes vs. Monsters,duel_deck,X
+TDDL,Duel Decks: Heroes vs. Monsters Tokens,token,X
+PTHS,Theros Promos,promo,X
+THS,Theros,expansion,X
+THP1,Theros Hero's Path,memorabilia,X
+TTHS,Theros Tokens,token,X
+TFTH,Face the Hydra,token,X
+C13,Commander 2013,commander,X
+OC13,Commander 2013 Oversized,memorabilia,X
+F14,Friday Night Magic 2014,promo,X
+J14,Judge Gift Cards 2014,promo,X
+L14,League Tokens 2014,token,X
+PI14,IDW Comics 2014,promo,X
+PDP15,Duels of the Planeswalkers 2015 Promos ,promo,X
+PBNG,Born of the Gods Promos,promo,X
+TBNG,Born of the Gods Tokens,token,X
+THP2,Born of the Gods Hero's Path,memorabilia,X
+BNG,Born of the Gods,expansion,X
+TBTH,Battle the Horde,token,X
+DDM,Duel Decks: Jace vs. Vraska,duel_deck,X
+TDDM,Duel Decks: Jace vs. Vraska Tokens,token,X
+PJOU,Journey into Nyx Promos,promo,X
+JOU,Journey into Nyx,expansion,X
+THP3,Journey into Nyx Hero's Path,promo,X
+TJOU,Journey into Nyx Tokens,token,X
+TDAG,Defeat a God,token,X
+TMD1,Modern Event Deck 2014 Tokens,token,X
+MD1,Modern Event Deck 2014,box,X
+TCNS,Conspiracy Tokens,token,X
+CNS,Conspiracy,draft_innovation,X
+PCNS,Conspiracy Promos,promo,X
+VMA,Vintage Masters,masters,X
+PS14,San Diego Comic-Con 2014,promo,X
+PPC1,M15 Prerelease Challenge,memorabilia,X
+PM15,Magic 2015 Promos,promo,X
+TM15,Magic 2015 Tokens,token,X
+M15,Magic 2015,core,X
+CP1,Magic 2015 Clash Pack,starter,X
+V14,From the Vault: Annihilation,from_the_vault,X
+DDN,Duel Decks: Speed vs. Cunning,duel_deck,X
+TKTK,Khans of Tarkir Tokens,token,X
+KTK,Khans of Tarkir,expansion,X
+PKTK,Khans of Tarkir Promos,promo,X
+C14,Commander 2014,commander,X
+TC14,Commander 2014 Tokens,token,X
+OC14,Commander 2014 Oversized,memorabilia,X
+EVG,Duel Decks Anthology: Elves vs. Goblins,duel_deck,X
+TEVG,Duel Decks Anthology: Elves vs. Goblins Tokens,token,X
+JVC,Duel Decks Anthology: Jace vs. Chandra,duel_deck,X
+DVD,Duel Decks Anthology: Divine vs. Demonic,duel_deck,X
+GVL,Duel Decks Anthology: Garruk vs. Liliana,duel_deck,X
+TGVL,Duel Decks Anthology: Garruk vs. Liliana Tokens,token,X
+TDVD,Duel Decks Anthology: Divine vs. Demonic Tokens,token,X
+TJVC,Duel Decks Anthology: Jace vs. Chandra Tokens,token,X
+J15,Judge Gift Cards 2015,promo,X
+F15,Friday Night Magic 2015,promo,X
+L15,League Tokens 2015,token,X
+UGIN,Ugin's Fate,promo,X
+TFRF,Fate Reforged Tokens,token,X
+FRF,Fate Reforged,expansion,X
+CP2,Fate Reforged Clash Pack,starter,X
+PFRF,Fate Reforged Promos,promo,X
+DDO,Duel Decks: Elspeth vs. Kiora,duel_deck,X
+DTK,Dragons of Tarkir,expansion,X
+TDTK,Dragons of Tarkir Tokens,token,X
+PDTK,Dragons of Tarkir Promos,promo,X
+PTKDF,Tarkir Dragonfury,promo,X
+TPR,Tempest Remastered,masters,X
+MM2,Modern Masters 2015,masters,X
+TMM2,Modern Masters 2015 Tokens,token,X
+PS15,San Diego Comic-Con 2015,promo,X
+TORI,Magic Origins Tokens,token,X
+ORI,Magic Origins,core,X
+PORI,Magic Origins Promos,promo,X
+CP3,Magic Origins Clash Pack,starter,X
+V15,From the Vault: Angels,from_the_vault,X
+DDP,Duel Decks: Zendikar vs. Eldrazi,duel_deck,X
+EXP,Zendikar Expeditions,masterpiece,X
+PSS1,BFZ Standard Series,promo,X
+TBFZ,Battle for Zendikar Tokens,token,X
+BFZ,Battle for Zendikar,expansion,X
+PBFZ,Battle for Zendikar Promos,promo,X
+OC15,Commander 2015 Oversized,memorabilia,X
+TC15,Commander 2015 Tokens,token,X
+C15,Commander 2015,commander,X
+PZ1,Legendary Cube Prize Pack,treasure_chest,X
+J16,Judge Gift Cards 2016,promo,X
+F16,Friday Night Magic 2016,promo,X
+L16,League Tokens 2016,token,X
+OGW,Oath of the Gatewatch,expansion,X
+TOGW,Oath of the Gatewatch Tokens,token,X
+POGW,Oath of the Gatewatch Promos,promo,X
+DDQ,Duel Decks: Blessed vs. Cursed,duel_deck,X
+W16,Welcome Deck 2016,starter,X
+SOI,Shadows over Innistrad,expansion,X
+TSOI,Shadows over Innistrad Tokens,token,X
+PSOI,Shadows over Innistrad Promos,promo,X
+TEMA,Eternal Masters Tokens,token,X
+EMA,Eternal Masters,masters,X
+EMN,Eldritch Moon,expansion,X
+TEMN,Eldritch Moon Tokens,token,X
+PEMN,Eldritch Moon Promos,promo,X
+V16,From the Vault: Lore,from_the_vault,X
+TCN2,Conspiracy: Take the Crown Tokens,token,X
+CN2,Conspiracy: Take the Crown,draft_innovation,X
+DDR,Duel Decks: Nissa vs. Ob Nixilis,duel_deck,X
+MPS,Kaladesh Inventions,masterpiece,X
+TKLD,Kaladesh Tokens,token,X
+KLD,Kaladesh,expansion,X
+PKLD,Kaladesh Promos,promo,X
+PS16,San Diego Comic-Con 2016,promo,X
+TC16,Commander 2016 Tokens,token,X
+C16,Commander 2016,commander,X
+OC16,Commander 2016 Oversized,memorabilia,X
+PZ2,Treasure Chest,treasure_chest,X
+PCA,Planechase Anthology,planechase,X
+TPCA,Planechase Anthology Tokens,token,X
+F17,Friday Night Magic 2017,promo,X
+J17,Judge Gift Cards 2017,promo,X
+L17,League Tokens 2017,token,X
+AER,Aether Revolt,expansion,X
+TAER,Aether Revolt Tokens,token,X
+PAER,Aether Revolt Promos,promo,X
+MM3,Modern Masters 2017,masters,X
+TMM3,Modern Masters 2017 Tokens,token,X
+TDDS,Duel Decks: Mind vs. Might Tokens,token,X
+DDS,Duel Decks: Mind vs. Might,duel_deck,X
+W17,Welcome Deck 2017,starter,X
+MP2,Amonkhet Invocations,masterpiece,X
+TAKH,Amonkhet Tokens,token,X
+AKH,Amonkhet,expansion,X
+PAKH,Amonkhet Promos,promo,X
+CMA,Commander Anthology,commander,X
+TCMA,Commander Anthology Tokens,token,X
+E01,Archenemy: Nicol Bolas,archenemy,X
+OE01,Archenemy: Nicol Bolas Schemes,archenemy,X
+THOU,Hour of Devastation Tokens,token,X
+HOU,Hour of Devastation,expansion,X
+PHOU,Hour of Devastation Promos,promo,X
+PS17,San Diego Comic-Con 2017,promo,X
+TC17,Commander 2017 Tokens,token,X
+C17,Commander 2017,commander,X
+OC17,Commander 2017 Oversized,memorabilia,X
+TE01,Archenemy: Nicol Bolas Tokens,token,X
+HTR,2016 Heroes of the Realm,memorabilia,X
+H17,HasCon 2017,funny,X
+PSS2,XLN Standard Showdown,promo,X
+TXLN,Ixalan Tokens,token,X
+XLN,Ixalan,expansion,X
+PXLN,Ixalan Promos,promo,X
+G17,2017 Gift Pack,box,X
+TDDT,Duel Decks: Merfolk vs. Goblins Tokens,token,X
+DDT,Duel Decks: Merfolk vs. Goblins,duel_deck,X
+PUST,Unstable Promos,promo,X
+TUST,Unstable Tokens,token,X
+IMA,Iconic Masters,masters,X
+V17,From the Vault: Transform,from_the_vault,X
+E02,Explorers of Ixalan,box,X
+PXTC,XLN Treasure Chest,promo,X
+TIMA,Iconic Masters Tokens,token,X
+UST,Unstable,funny,X
+F18,Friday Night Magic 2018,promo,X
+J18,Judge Gift Cards 2018,promo,X
+RIX,Rivals of Ixalan,expansion,X
+PRIX,Rivals of Ixalan Promos,promo,X
+TRIX,Rivals of Ixalan Tokens,token,X
+PNAT,Nationals Promos,promo,X
+PLNY,2018 Lunar New Year,promo,X
+TA25,Masters 25 Tokens,token,X
+A25,Masters 25,masters,X
+TDDU,Duel Decks: Elves vs. Inventors Tokens,token,X
+DDU,Duel Decks: Elves vs. Inventors,duel_deck,X
+DOM,Dominaria,expansion,X
+TDOM,Dominaria Tokens,token,X
+PDOM,Dominaria Promos,promo,X
+TCM2,Commander Anthology Volume II Tokens,token,X
+TBBD,Battlebond Tokens,token,X
+CM2,Commander Anthology Volume II,commander,X
+BBD,Battlebond,draft_innovation,X
+PBBD,Battlebond Promos,promo,X
+SS1,Signature Spellbook: Jace,spellbook,X
+GS1,Global Series Jiang Yanggu & Mu Yanling,duel_deck,X
+M19,Core Set 2019,core,X
+TM19,Core Set 2019 Tokens,token,X
+PSS3,M19 Standard Showdown,promo,X
+PM19,Core Set 2019 Promos,promo,X
+OANA,Arena New Player Experience Cards,starter,X
+PANA,MTG Arena Promos,promo,X
+ANA,Arena New Player Experience,starter,X
+XANA,Arena New Player Experience Extras,memorabilia,X
+PS18,San Diego Comic-Con 2018,promo,X
+HTR17,2017 Heroes of the Realm,funny,X
+C18,Commander 2018,commander,X
+TC18,Commander 2018 Tokens,token,X
+OC18,Commander 2018 Oversized,memorabilia,X
+MED,Mythic Edition,masterpiece,X
+TMED,Mythic Edition Tokens,token,X
+GRN,Guilds of Ravnica,expansion,X
+PGRN,Guilds of Ravnica Promos,promo,X
+TGRN,Guilds of Ravnica Tokens,token,X
+GK1,GRN Guild Kit,box,X
+TGK1,GRN Guild Kit Tokens,token,X
+PRWK,GRN Ravnica Weekend,promo,X
+G18,M19 Gift Pack,box,X
+GNT,Game Night,box,X
+TUMA,Ultimate Masters Tokens,token,X
+UMA,Ultimate Masters,masters,X
+PUMA,Ultimate Box Topper,masterpiece,X
+OPCA,Planechase Anthology Planes,planechase,X
+PF19,MagicFest 2019,promo,X
+TRNA,Ravnica Allegiance Tokens,token,X
+RNA,Ravnica Allegiance,expansion,X
+PRNA,Ravnica Allegiance Promos,promo,X
+TGK2,RNA Guild Kit Tokens,token,X
+GK2,RNA Guild Kit,box,X
+PRW2,RNA Ravnica Weekend,promo,X
+J19,Judge Gift Cards 2019,promo,X
+WAR,War of the Spark,expansion,X
+TWAR,War of the Spark Tokens,token,X
+PWAR,War of the Spark Promos,promo,X
+TMH1,Modern Horizons Tokens,token,X
+AMH1,Modern Horizons Art Series,memorabilia,X
+MH1,Modern Horizons,draft_innovation,X
+PMH1,Modern Horizons Promos,promo,X
+SS2,Signature Spellbook: Gideon,spellbook,X
+M20,Core Set 2020,core,X
+PPP1,M20 Promo Packs,promo,X
+PM20,Core Set 2020 Promos,promo,X
+TM20,Core Set 2020 Tokens,token,X
+PS19,San Diego Comic-Con 2019,promo,X
+HTR18,Heroes of the Realm 2018,funny,X
+TC19,Commander 2019 Tokens,token,X
+C19,Commander 2019,commander,X
+OC19,Commander 2019 Oversized,memorabilia,X
+TELD,Throne of Eldraine Tokens,token,X
+ELD,Throne of Eldraine,expansion,X
+PELD,Throne of Eldraine Promos,promo,X
+PTG,Ponies: The Galloping,funny,X
+MB1,Mystery Booster,masters,X
+CMB1,Mystery Booster Playtest Cards,funny,X
+GN2,Game Night 2019,box,X
+TGN2,Game Night 2019 Tokens,token,X
+HA1,Historic Anthology 1,box,X
+SLD,Secret Lair Drop,box,X
+PF20,MagicFest 2020,promo,X
+J20,Judge Gift Cards 2020,promo,X
+THB,Theros Beyond Death,expansion,X
+TTHB,Theros Beyond Death Tokens,token,X
+PTHB,Theros Beyond Death Promos,promo,X
+UND,Unsanctioned,funny,X
+TUND,Unsanctioned Tokens,token,X
+FMB1,Mystery Booster Retail Edition Foils,masters,X
+HA2,Historic Anthology 2,box,X
+TC20,Commander 2020 Tokens,token,X
+C20,Commander 2020,commander,X
+OC20,Commander 2020 Oversized,memorabilia,X
+TIKO,Ikoria: Lair of Behemoths Tokens,token,X
+IKO,Ikoria: Lair of Behemoths,expansion,X
+PIKO,Ikoria: Lair of Behemoths Promos,promo,X
+PLGS,Love Your LGS,promo,X
+HA3,Historic Anthology 3,box,X
+SLU,Secret Lair: Ultimate Edition,box,X
+TM21,Core Set 2021 Tokens,token,X
+FJMP,Jumpstart Front Cards,memorabilia,X
+SS3,Signature Spellbook: Chandra,spellbook,X
+M21,Core Set 2021,core,X
+PM21,Core Set 2021 Promos,promo,X
+JMP,Jumpstart,draft_innovation,X
+AJMP,Jumpstart Arena Exclusives,starter,X
+T2XM,Double Masters Tokens,token,X
+2XM,Double Masters,masters,X
+AKR,Amonkhet Remastered,masters,X
+ANB,Arena Beginner Set,starter,X
+ZNR,Zendikar Rising,expansion,X
+ZNE,Zendikar Rising Expeditions,masterpiece,X
+SZNR,Zendikar Rising Substitute Cards,token,X
+ZNC,Zendikar Rising Commander,commander,X
+AZNR,Zendikar Rising Art Series,memorabilia,X
+TZNR,Zendikar Rising Tokens,token,X
+MZNR,Zendikar Rising Minigames,funny,X
+TZNC,Zendikar Rising Commander Tokens,token,X
+PZNR,Zendikar Rising Promos,promo,X
+PLIST,The List,masters,X
+KLR,Kaladesh Remastered,masters,X
+TCMR,Commander Legends Tokens,token,X
+CMR,Commander Legends,draft_innovation,X
+CC1,Commander Collection: Green,from_the_vault,X
+KHC,Kaldheim Commander,commander,X
+TKHM,Kaldheim Tokens,token,X
+KHM,Kaldheim,expansion,X
+PKHM,Kaldheim Promos,promo,X
+TSR,Time Spiral Remastered,masters,X

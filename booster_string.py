@@ -3,6 +3,7 @@ import requests
 import json
 import random
 import sys
+import argparse
 import time
 
 
@@ -45,6 +46,10 @@ class booster_modifier:
         self.add(booster, element, position)
 
     def mythicify(self, booster, set=None, odds=None):
+        elements = booster.string.split('.')
+        if 'r' not in elements:
+            print('No rare to mythicify')
+            return
         if set:
             ms = len(vizualizer().get_cards(f's:{set}, r=m'))
             rs = len(vizualizer().get_cards(f's:{set}, r=r'))
@@ -52,7 +57,7 @@ class booster_modifier:
         # Standard mythic distribution
         if not odds:
             odds = [15, 106]
-        r_pos = booster.string.split('.').index('r')
+        r_pos = elements.index('r')
 
         if random.choices([True, False], odds)[0]:
             self.remove(booster, r_pos)
@@ -142,7 +147,7 @@ class booster_modifier:
     }
 
     def modify(self, mod_string, booster, set=None):
-        for mod in mod_string:
+        for mod in mod_string.split('.'):
             self.mod_dict[mod](self, booster, set=set)
 
 
@@ -222,37 +227,80 @@ class vizualizer:
         image.show()
 
 
+def parse_arguments(code_list):
+    parser = argparse.ArgumentParser(
+        description='Create a pack for an M:TG booster.'
+    )
+    parser.add_argument(
+        '-v', '--verbose',
+        help='Display additional information',
+        action='store_true'
+    )
+
+    parser.add_argument(
+        '--set',
+        choices=code_list,
+        default=random.choice(code_list),
+        help='The set to use when generating the final pack'
+    )
+
+    parser.add_argument(
+        '--booster',
+        default='c.c.c.c.c.c.c.c.c.c.c.u.u.u.r',
+        help='The base booster to use'
+    )
+
+    parser.add_argument(
+        '--mod',
+        '-modifier',
+        help='The modifier string to apply to the pack'
+    )
+
+    return parser.parse_args()
+
+
 if __name__ == '__main__':
-    b_m = booster_modifier()
-    viz = vizualizer()
+    # Parse the set information
+    set_dict = {}
+    with open('sets_todo.csv', 'r', encoding='utf8') as set_list:
+        for set_info in set_list.readlines():
+            split_info = set_info.strip().split(',')
+            set_dict[split_info[0]] = split_info[1:]
+
+    code_list = []
+    code_list = list(set_dict.keys())
+
+    args = parse_arguments(code_list)
+
+    b_set = args.set
+    b_set_info = set_dict[b_set]
+    dict_mod_string = b_set_info[2]
+    mod_string = args.mod or dict_mod_string
+
+    if dict_mod_string == 'Z':
+        cont = input(
+            f'The set {b_set_info[0]} ({b_set}) isn\'t normally used'
+            ' for booster generation. Still continue? (Y/N)\n'
+        ).upper()
+        while cont not in 'YN':
+            cont = input('Sorry, I didn\'t get that.  Still continue? (Y/N)\n')
+        if cont != 'Y':
+            exit()
+    elif dict_mod_string in 'XY':
+        print(f'The set {b_set_info[0]} ({b_set}) isn\'t fully'
+              ' implemented yet; expect discrepancies.')
+        mod_string = 'B.M.F'
+
+    b_string = args.booster
     booster = booster_string()
+    booster.string = b_string
 
     print(booster)
 
-    set = sys.argv[1]
-    mod = sys.argv[2]
+    b_m = booster_modifier()
+    b_m.modify(mod_string, booster, b_set)
 
-    # b_m.mythicify(booster, odds=[1,1])
-    # b_m.mythicify(booster, 'lea')
-
-    # b_m.remove(booster, -1)
-    # print(booster)
-
-    # b_m.add(booster, 'm', -1)
-    # print(booster)
-
-    # b_m.mythicify(booster)
-    # b_m.foilify(booster)
-    # b_m.add_basic(booster, set)
-    b_m.modify(mod, booster, set)
     print(booster)
 
-    # foil_rarities = []
-    # for _ in range(850):
-    #     booster = booster_string()
-    #     b_m.foilify(booster, foil_pack_odds=[1, 0])
-    #     foil_rarities.append(booster.string[-2])
-    # from collections import Counter
-    # print(Counter(foil_rarities))
-
-    viz.show(booster, set)
+    viz = vizualizer()
+    viz.show(booster, b_set)
