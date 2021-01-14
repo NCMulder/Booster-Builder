@@ -18,14 +18,15 @@ class booster_parser:
         for element in elements:
             rarity = element[0]
             if rarity == 'b':
-                query = 't:basic'
+                query = '++t:basic'
             else:
-                query = f'r:{rarity}'
+                query = f'r:{rarity} -t:basic'
             queries.append(query)
         return queries
 
 
 class booster_modifier:
+
     def add(self, booster, element, position=0):
         split_booster = booster.string.split('.')
         if position == -1:
@@ -132,6 +133,18 @@ class booster_modifier:
             self.remove(booster, x_pos)
             self.add(booster, 'b', -1)
 
+    mod_dict = {
+        'A': add,
+        'R': remove,
+        'M': mythicify,
+        'F': foilify,
+        'B': add_basic
+    }
+
+    def modify(self, mod_string, booster, set=None):
+        for mod in mod_string:
+            self.mod_dict[mod](self, booster, set=set)
+
 
 class vizualizer:
     def get_cards(self, query):
@@ -149,7 +162,7 @@ class vizualizer:
             else:
                 break
         return cards
-    
+
     def get_card_image(self, cardname='', version='normal', uri=''):
         """Get a card image from Scryfall based on card name.
         See https://scryfall.com/docs/api/images
@@ -217,6 +230,7 @@ if __name__ == '__main__':
     print(booster)
 
     set = sys.argv[1]
+    mod = sys.argv[2]
 
     # b_m.mythicify(booster, odds=[1,1])
     # b_m.mythicify(booster, 'lea')
@@ -229,7 +243,8 @@ if __name__ == '__main__':
 
     # b_m.mythicify(booster)
     # b_m.foilify(booster)
-    b_m.add_basic(booster, set)
+    # b_m.add_basic(booster, set)
+    b_m.modify(mod, booster, set)
     print(booster)
 
     # foil_rarities = []
