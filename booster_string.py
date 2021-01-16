@@ -5,6 +5,7 @@ import random
 import sys
 import argparse
 import time
+from pathlib import Path
 
 
 @dataclass
@@ -241,10 +242,12 @@ class vizualizer:
 class booster_builder():
     def get_random_boosters(n_players, n_packs, unique_packs=True, booster_sets=True):
         set_dict = {}
-        with open('sets.csv', 'r', encoding='utf8') as set_list:
+
+        p = Path(__file__).with_name('sets.csv')
+        with p.open('r', encoding='utf8') as set_list:
             for set_info in set_list.readlines():
                 split_info = set_info.strip().split(',')
-                if not booster_sets or (split_info[3] != 'Z' and split_info[2] in ['core', 'expansion', 'masters']):
+                if not booster_sets or (split_info[3] not in 'YZ' and split_info[2] in ['core', 'expansion', 'masters']):
                     set_dict[split_info[0]] = split_info[1:]
 
         set_codes = list(set_dict.keys())
