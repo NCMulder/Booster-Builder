@@ -147,6 +147,8 @@ class booster_modifier:
     }
 
     def modify(self, mod_string, booster, set=None):
+        if not mod_string or mod_string == 'X':
+            return
         for mod in mod_string.split('.'):
             self.mod_dict[mod](self, booster, set=set)
 
@@ -167,6 +169,15 @@ class vizualizer:
             else:
                 break
         return cards
+
+    def get_booster_json(self, booster, set):
+        queries = booster_parser.parse(booster)
+        booster_cards = []
+        for query in queries:
+            cards = self.get_cards(query + f'+s:{set}')
+            card = random.choice(cards)
+            booster_cards.append(card)
+        return booster_cards
 
     def get_card_image(self, cardname='', version='normal', uri=''):
         """Get a card image from Scryfall based on card name.
@@ -227,6 +238,36 @@ class vizualizer:
         image.show()
 
 
+class booster_builder():
+    def get_random_boosters(n_players, n_packs, unique_packs=True, booster_sets=True):
+        set_dict = {}
+        with open('sets.csv', 'r', encoding='utf8') as set_list:
+            for set_info in set_list.readlines():
+                split_info = set_info.strip().split(',')
+                if not booster_sets or (split_info[3] != 'Z' and split_info[2] in ['core', 'expansion', 'masters']):
+                    set_dict[split_info[0]] = split_info[1:]
+
+        set_codes = list(set_dict.keys())
+        total_packs = n_players * n_packs
+        if unique_packs:
+            random.shuffle(set_codes)
+            set_codes = set_codes[:total_packs]
+        else:
+            set_codes = random.choices(set_codes, k=total_packs)
+
+        b_m = booster_modifier()
+        b_v = vizualizer()
+        packs = {}
+        for i, set_code in enumerate(set_codes):
+            booster = booster_string()
+            mod_string = set_dict[set_code][2]
+            b_m.modify(mod_string, booster, set_code)
+            json = b_v.get_booster_json(booster, set_code)
+            packs[f'{i} - {set_code}'] = json
+
+        return packs
+
+
 def parse_arguments(code_list):
     parser = argparse.ArgumentParser(
         description='Create a pack for an M:TG booster.'
@@ -262,7 +303,7 @@ def parse_arguments(code_list):
 if __name__ == '__main__':
     # Parse the set information
     set_dict = {}
-    with open('sets_todo.csv', 'r', encoding='utf8') as set_list:
+    with open('sets.csv', 'r', encoding='utf8') as set_list:
         for set_info in set_list.readlines():
             split_info = set_info.strip().split(',')
             set_dict[split_info[0]] = split_info[1:]
@@ -289,6 +330,7 @@ if __name__ == '__main__':
     elif dict_mod_string in 'XY':
         print(f'The set {b_set_info[0]} ({b_set}) isn\'t fully'
               ' implemented yet; expect discrepancies.')
+    if mod_string in 'XY':
         mod_string = 'B.M.F'
 
     b_string = args.booster
