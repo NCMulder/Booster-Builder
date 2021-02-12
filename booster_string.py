@@ -5,25 +5,31 @@ import random
 import sys
 import argparse
 import time
+import re
 from pathlib import Path
 
 
 @dataclass
 class booster_string:
-    string: str = 'c.c.c.c.c.c.c.c.c.c.c.u.u.u.r'
+    string: str = '11c.3u.1r'
 
 
 class booster_parser:
     def parse(booster_string):
         queries = []
         elements = booster_string.string.split('.')
+        pattern = r'(\d+)([bcurm])\[?([^\]]*)\]?'
         for element in elements:
-            rarity = element[0]
+            # Get the elements
+            m = re.match(pattern, element)
+            count = int(m.group(1))
+            rarity = m.group(2)
+            extra = m.group(3)
             if rarity == 'b':
-                query = '++t:basic'
+                query = '&unique=prints&q=t:basic ' + extra
             else:
-                query = f'r:{rarity} -t:basic'
-            queries.append(query)
+                query = f'&q=r:{rarity} -t:basic' + extra
+            queries.append((count, query))
         return queries
 
 
@@ -34,12 +40,22 @@ class booster_modifier:
         if position == -1:
             split_booster += [element]
         else:
-            split_booster[position:position] = element
+            split_booster.insert(position, element)
         booster.string = '.'.join(split_booster)
 
-    def remove(self, booster, position=0):
+    def remove(self, booster, position=0, count=1):
         split_booster = booster.string.split('.')
-        del split_booster[position:position + 1]
+        pattern = r'(\d+)([bcurm])\[?(.*)\]?'
+        old = split_booster[position]
+        match = re.match(pattern, old)
+        count_old = int(match.group(1))
+        if count_old < count:
+            print('Warning: removing more elements than available')
+        if count_old <= count:
+            del split_booster[position:position + 1]
+        else:
+            new = f'{count_old - count}{match.group(2)}{match.group(3)}'
+            split_booster[position] = new
         booster.string = '.'.join(split_booster)
 
     def replace(self, booster, position, element):
@@ -62,7 +78,7 @@ class booster_modifier:
 
         if random.choices([True, False], odds)[0]:
             self.remove(booster, r_pos)
-            self.add(booster, 'm', r_pos)
+            self.add(booster, '1m', r_pos)
 
     def foilify(
         self,
@@ -85,7 +101,7 @@ class booster_modifier:
             ms = len(vizualizer().get_cards(base + 'r=m'))
             rs = len(vizualizer().get_cards(base + 'r=r'))
             us = len(vizualizer().get_cards(base + 'r=u'))
-            cs = len(vizualizer().get_cards(base + 'r=c'))
+            cs = len(vizualizer().get_cards(base + 'r=c -t=basic'))
             bs = len(vizualizer().get_cards(base + 't=basic'))
             odds = [ms, rs * 2, us * 3, cs * 4, bs * 16]
             # Remove basic option if no basics are in the set
@@ -98,9 +114,12 @@ class booster_modifier:
         foil_rarity = random.choices(choices, odds)[0]
 
         # A foil replaces the common in standard sets
-        x_pos = booster.string.split('.').index(to_replace)
+        elements = booster.string.split('.')
+        for x_pos, elem in enumerate(elements):
+            if re.search(f'\\d+{to_replace}.*'):
+                break
         self.remove(booster, x_pos)
-        self.add(booster, foil_rarity + '*', -1)
+        self.add(booster, f'1{foil_rarity}*', -1)
 
     def add_basic(self, booster, set=None):
         elements = booster.string.split('.')
@@ -111,13 +130,19 @@ class booster_modifier:
         # replace 26 out of 121 uncommons
         # For Beta, Unlimited and Revised, replace 46/121 commons
         if set in ['LEA', 'LEB', '2ED', '3ED', 'SUM', 'FBB']:
-            for i, element in enumerate(elements):
+            place = 0
+            for element in elements:
+                m = re.match(r'(\d+)([bcurm]).*', element)
+
+                count = int(m.group(1))
+                rarity = m.group(2)
+
                 # Uncommons
-                if element == 'u':
+                if rarity == 'u':
                     odds = [26, 96]
                 # Rares
                 # TODO: Force Island
-                elif element in ['r', 'm']:
+                elif rarity in ['r', 'm']:
                     if set == 'LEA':
                         odds = [5, 116]
                     elif set in ['LEB', '2ED']:
@@ -131,13 +156,24 @@ class booster_modifier:
                     else:
                         odds = [46, 75]
 
-                if random.choices([True, False], odds)[0]:
-                    self.replace(booster, i, 'b')
+                tot = sum(random.choices([True, False], odds, k=count))
+                if tot > 0:
+                    if rarity == 'r':
+                        mod = f'{tot}b[t:island]'
+                    else:
+                        mod = f'{tot}b'
+                    self.remove(booster, place, count=tot)
+                    place = place + 1
+                    self.add(booster, mod, place)
+                place = place + 1
         else:
             # A basic replaces a common in standard sets
-            x_pos = elements.index('c')
+            elements = booster.string.split('.')
+            for x_pos, elem in enumerate(elements):
+                if re.search(f'\\d+c.*'):
+                    break
             self.remove(booster, x_pos)
-            self.add(booster, 'b', -1)
+            self.add(booster, '1b', -1)
 
     mod_dict = {
         'A': add,
@@ -157,7 +193,7 @@ class booster_modifier:
 class vizualizer:
     def get_cards(self, query):
         time.sleep(0.1)
-        url = f'https://api.scryfall.com/cards/search?q={query}+is:booster'
+        url = f'https://api.scryfall.com/cards/search?{query}+is:booster'
         response = requests.get(url).json()
         if response['object'] != 'list':
             print(query, response['details'])
@@ -174,10 +210,10 @@ class vizualizer:
     def get_booster_json(self, booster, set):
         queries = booster_parser.parse(booster)
         booster_cards = []
-        for query in queries:
+        for count, query in queries:
             cards = self.get_cards(query + f'+s:{set}')
-            card = random.choice(cards)
-            booster_cards.append(card)
+            card_sample = random.sample(cards, k=count)
+            booster_cards.extend(card_sample)
         return booster_cards
 
     def get_card_image(self, cardname='', version='normal', uri=''):
@@ -199,10 +235,10 @@ class vizualizer:
     def print(self, booster, set):
         queries = booster_parser.parse(booster)
         booster_cards = []
-        for query in queries:
+        for count, query in queries:
             cards = self.get_cards(query + f'+s:{set}')
-            card = random.choice(cards)
-            booster_cards.append(card['name'])
+            card_sample = random.sample(cards, k=count)
+            booster_cards.extend([card['name'] for card in card_sample])
         print(booster_cards)
 
     def show(self, booster, set):
@@ -212,29 +248,33 @@ class vizualizer:
 
         card_size = [488, 680]
         queries = booster_parser.parse(booster)
+        total = sum([count for count, _ in queries])
 
         image = Image.new(
             'RGB',
             [card_size[0] * 5,
-             card_size[1] * -(-len(queries) // 5)]
+             card_size[1] * -(-total // 5)]
         )
 
-        for i, query in enumerate(queries):
+        index = 0
+        for count, query in queries:
             cards = self.get_cards(query + f'+s:{set}')
-            card = random.choice(cards)
+            card_sample = random.sample(cards, k=count)
 
-            image_box = (
-                card_size[0] * (i % 5),
-                card_size[1] * (i // 5)
-            )
+            for card in card_sample:
+                image_box = (
+                    card_size[0] * (index % 5),
+                    card_size[1] * (index // 5)
+                )
 
-            front_uri = card['image_uris']['normal']
+                front_uri = card['image_uris']['normal']
 
-            card_image = self.get_card_image(uri=front_uri)
-            image.paste(
-                Image.open(BytesIO(card_image)),
-                box=image_box
-            )
+                card_image = self.get_card_image(uri=front_uri)
+                image.paste(
+                    Image.open(BytesIO(card_image)),
+                    box=image_box
+                )
+                index = index + 1
 
         image.show()
 
@@ -290,7 +330,7 @@ def parse_arguments(code_list):
 
     parser.add_argument(
         '--booster',
-        default='c.c.c.c.c.c.c.c.c.c.c.u.u.u.r',
+        default='11c.3u.1r',
         help='The base booster to use'
     )
 
@@ -330,10 +370,10 @@ if __name__ == '__main__':
             cont = input('Sorry, I didn\'t get that.  Still continue? (Y/N)\n')
         if cont != 'Y':
             exit()
-    elif dict_mod_string in 'XY':
+    elif dict_mod_string and dict_mod_string in 'XY':
         print(f'The set {b_set_info[0]} ({b_set}) isn\'t fully'
               ' implemented yet; expect discrepancies.')
-    if mod_string in 'XY':
+    if mod_string and mod_string in 'XY':
         mod_string = 'B.M.F'
 
     b_string = args.booster
