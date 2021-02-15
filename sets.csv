@@ -338,7 +338,7 @@ TDDJ,Duel Decks: Izzet vs. Golgari Tokens,token,Z
 DDJ,Duel Decks: Izzet vs. Golgari,duel_deck,Z
 TRTR,Return to Ravnica Tokens,token,Z
 PRTR,Return to Ravnica Promos,promo,Z
-RTR,Return to Ravnica,expansion,B.M.F
+RTR,Return to Ravnica,expansion,X
 CM1,Commander's Arsenal,commander,Z
 OCM1,Commander's Arsenal Oversized,memorabilia,Z
 F13,Friday Night Magic 2013,promo,Z
@@ -355,7 +355,7 @@ PWCQ,World Magic Cup Qualifiers,promo,Z
 PDGM,Dragon's Maze Promos,promo,Z
 TDGM,Dragon's Maze Tokens,token,Z
 DGM,Dragon's Maze,expansion,X
-MMA,Modern Masters,masters,X
+MMA,Modern Masters,masters,M.F[[1,0]]
 TMMA,Modern Masters Tokens,token,Z
 PSDC,San Diego Comic-Con 2013,promo,Z
 PM14,Magic 2014 Promos,promo,Z
@@ -430,7 +430,7 @@ TDTK,Dragons of Tarkir Tokens,token,Z
 PDTK,Dragons of Tarkir Promos,promo,Z
 PTKDF,Tarkir Dragonfury,promo,Z
 TPR,Tempest Remastered,masters,Z
-MM2,Modern Masters 2015,masters,X
+MM2,Modern Masters 2015,masters,M.F[[1,0]]
 TMM2,Modern Masters 2015 Tokens,token,Z
 PS15,San Diego Comic-Con 2015,promo,Z
 TORI,Magic Origins Tokens,token,Z
@@ -460,7 +460,7 @@ SOI,Shadows over Innistrad,expansion,X
 TSOI,Shadows over Innistrad Tokens,token,X
 PSOI,Shadows over Innistrad Promos,promo,X
 TEMA,Eternal Masters Tokens,token,X
-EMA,Eternal Masters,masters,X
+EMA,Eternal Masters,masters,M.F[[1,0]]
 EMN,Eldritch Moon,expansion,X
 TEMN,Eldritch Moon Tokens,token,X
 PEMN,Eldritch Moon Promos,promo,X
@@ -485,7 +485,7 @@ L17,League Tokens 2017,token,X
 AER,Aether Revolt,expansion,X
 TAER,Aether Revolt Tokens,token,X
 PAER,Aether Revolt Promos,promo,X
-MM3,Modern Masters 2017,masters,X
+MM3,Modern Masters 2017,masters,M.F[[1,0]]
 TMM3,Modern Masters 2017 Tokens,token,X
 TDDS,Duel Decks: Mind vs. Might Tokens,token,X
 DDS,Duel Decks: Mind vs. Might,duel_deck,X
@@ -517,7 +517,7 @@ TDDT,Duel Decks: Merfolk vs. Goblins Tokens,token,X
 DDT,Duel Decks: Merfolk vs. Goblins,duel_deck,X
 PUST,Unstable Promos,promo,X
 TUST,Unstable Tokens,token,X
-IMA,Iconic Masters,masters,X
+IMA,Iconic Masters,masters,M.F[[1,0]]
 V17,From the Vault: Transform,from_the_vault,X
 E02,Explorers of Ixalan,box,X
 PXTC,XLN Treasure Chest,promo,X
@@ -531,7 +531,7 @@ TRIX,Rivals of Ixalan Tokens,token,X
 PNAT,Nationals Promos,promo,X
 PLNY,2018 Lunar New Year,promo,X
 TA25,Masters 25 Tokens,token,X
-A25,Masters 25,masters,X
+A25,Masters 25,masters,M.F[[1,0]]
 TDDU,Duel Decks: Elves vs. Inventors Tokens,token,X
 DDU,Duel Decks: Elves vs. Inventors,duel_deck,X
 DOM,Dominaria,expansion,X
@@ -568,7 +568,7 @@ PRWK,GRN Ravnica Weekend,promo,X
 G18,M19 Gift Pack,box,X
 GNT,Game Night,box,X
 TUMA,Ultimate Masters Tokens,token,X
-UMA,Ultimate Masters,masters,X
+UMA,Ultimate Masters,masters,M.F[[1,0]]
 PUMA,Ultimate Box Topper,masterpiece,X
 OPCA,Planechase Anthology Planes,planechase,X
 PF19,MagicFest 2019,promo,X
@@ -632,7 +632,7 @@ PM21,Core Set 2021 Promos,promo,X
 JMP,Jumpstart,draft_innovation,X
 AJMP,Jumpstart Arena Exclusives,starter,X
 T2XM,Double Masters Tokens,token,X
-2XM,Double Masters,masters,X
+2XM,Double Masters,masters,Z[1;3;"1r"].M.M.F[[1,0]].F[[1,0]]
 AKR,Amonkhet Remastered,masters,X
 ANB,Arena Beginner Set,starter,X
 ZNR,Zendikar Rising,expansion,X

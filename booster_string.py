@@ -7,6 +7,7 @@ import argparse
 import time
 import re
 from pathlib import Path
+from PIL import ImageDraw, ImageFont
 
 
 @dataclass
@@ -18,27 +19,28 @@ class booster_parser:
     def parse(booster_string):
         queries = []
         elements = booster_string.string.split('.')
-        pattern = r'(\d+)([bcurm])\[?([^\*\]]*)\]?\*?'
+        pattern = r'(\d+)([bcurm])\[?([^\*\]]*)\]?(\*)?'
         for element in elements:
             # Get the elements
             m = re.match(pattern, element)
             count = int(m.group(1))
             rarity = m.group(2)
             extra = m.group(3)
+            foil = m.group(4)
             if rarity == 'b':
                 query = '&unique=prints&q=t:basic ' + extra
             else:
                 query = f'&q=r:{rarity} -t:basic ' + extra
-            queries.append((count, query))
+            queries.append((count, query, foil))
         return queries
 
 
 class booster_modifier:
 
-    def n(self, booster, arg, set=None):
+    def n(self, booster, set=None, arg=None):
         return booster
 
-    def add(self, booster, element, position=0):
+    def add(self, booster, set=None, element='1c', position=0):
         split_booster = booster.string.split('.')
         if position == -1:
             split_booster += [element]
@@ -46,7 +48,7 @@ class booster_modifier:
             split_booster.insert(position, element)
         booster.string = '.'.join(split_booster)
 
-    def remove(self, booster, position=0, count=1):
+    def remove(self, booster, set=None, position=0, count=1):
         split_booster = booster.string.split('.')
         pattern = r'(\d+)([bcurm])\[?(.*)\]?'
         old = split_booster[position]
@@ -61,9 +63,9 @@ class booster_modifier:
             split_booster[position] = new
         booster.string = '.'.join(split_booster)
 
-    def replace(self, booster, position, element):
-        self.remove(booster, position)
-        self.add(booster, element, position)
+    def replace(self, booster, set=None, oldpos=0, newpos=0, element='1c'):
+        self.remove(booster, position=oldpos)
+        self.add(booster, element=element, position=newpos)
 
     def mythicify(self, booster, set=None, odds=None):
         elements = booster.string.split('.')
@@ -77,25 +79,26 @@ class booster_modifier:
             print('No rare to mythicify')
             return
 
-        # Get the mythic odds for the given set
-        if set:
-            ms = len(vizualizer().get_cards(f'&q=s:{set}, r=m'))
-            rs = len(vizualizer().get_cards(f'&q=s:{set}, r=r'))
-            odds = [ms, rs * 2]
-        # Standard mythic distribution
         if not odds:
-            odds = [15, 106]
+            # Get the mythic odds for the given set
+            if set:
+                ms = len(vizualizer().get_cards(f'&q=s:{set}, r=m'))
+                rs = len(vizualizer().get_cards(f'&q=s:{set}, r=r'))
+                odds = [ms, rs * 2]
+            else:
+            # Standard mythic distribution
+                odds = [15, 106]
 
         # Roll the odds
         if random.choices([True, False], odds)[0]:
-            self.remove(booster, r_pos)
-            self.add(booster, '1m', r_pos)
+            self.remove(booster, position=r_pos)
+            self.add(booster, element='1m', position=r_pos)
 
     def foilify(
         self,
         booster,
-        foil_pack_odds=None,
         set=None,
+        foil_pack_odds=None,
         foil_odds=None,
         to_replace='c'
     ):
@@ -129,8 +132,8 @@ class booster_modifier:
         for x_pos, elem in enumerate(elements):
             if re.search(f'\\d+{to_replace}.*', elem):
                 break
-        self.remove(booster, x_pos)
-        self.add(booster, f'1{foil_rarity}*', -1)
+        self.remove(booster, position=x_pos)
+        self.add(booster, element=f'1{foil_rarity}*', position=-1)
 
     def add_basic(self, booster, set=None):
         elements = booster.string.split('.')
@@ -173,9 +176,9 @@ class booster_modifier:
                         mod = f'{tot}b[t:island]'
                     else:
                         mod = f'{tot}b'
-                    self.remove(booster, place, count=tot)
+                    self.remove(booster, position=place, count=tot)
                     place = place + 1
-                    self.add(booster, mod, place)
+                    self.add(booster, element=mod, position=place)
                 place = place + 1
         else:
             # A basic replaces a common in standard sets
@@ -183,22 +186,30 @@ class booster_modifier:
             for x_pos, elem in enumerate(elements):
                 if re.search(f'\\d+c.*', elem):
                     break
-            self.remove(booster, x_pos)
-            self.add(booster, '1b', -1)
+            self.remove(booster, position=x_pos)
+            self.add(booster, element='1b', position=-1)
 
     mod_dict = {
         'A': add,
         'R': remove,
         'M': mythicify,
         'F': foilify,
-        'B': add_basic
+        'B': add_basic,
+        'Z': replace
     }
 
     def modify(self, mod_string, booster, set=None):
         if not mod_string or mod_string == 'X':
             return
+        mod_pattern = r'(.)\[?(.*?)\]?$'
         for mod in mod_string.split('.'):
-            (self.mod_dict.get(mod) or self.n)(self, booster, set=set)
+            m = re.match(mod_pattern, mod)
+            func = m.group(1)
+            args = m.group(2).split(';') if m.group(2) else []
+            args = [eval(arg) for arg in args]
+            args = [set] + args
+            print(func, args)
+            (self.mod_dict.get(func) or self.n)(self, booster, *args)
 
 
 class vizualizer:
@@ -221,7 +232,7 @@ class vizualizer:
     def get_booster_json(self, booster, set):
         queries = booster_parser.parse(booster)
         booster_cards = []
-        for count, query in queries:
+        for count, query, foil in queries:
             cards = self.get_cards(query + f'+s:{set}')
             card_sample = random.sample(cards, k=count)
             booster_cards.extend(card_sample)
@@ -252,7 +263,7 @@ class vizualizer:
     def print(self, booster, set):
         queries = booster_parser.parse(booster)
         booster_cards = []
-        for count, query in queries:
+        for count, query, foil in queries:
             cards = self.get_cards(query + f'+s:{set}')
             card_sample = random.sample(cards, k=count)
             booster_cards.extend([card['name'] for card in card_sample])
@@ -265,7 +276,7 @@ class vizualizer:
 
         card_size = [488, 680]
         queries = booster_parser.parse(booster)
-        total = sum([count for count, _ in queries])
+        total = sum([count for count, _, _ in queries])
 
         image = Image.new(
             'RGB',
@@ -274,7 +285,7 @@ class vizualizer:
         )
 
         index = 0
-        for count, query in queries:
+        for count, query, foil in queries:
             cards = self.get_cards(query + f'+s:{set}')
             card_sample = random.sample(cards, k=count)
 
@@ -290,8 +301,15 @@ class vizualizer:
                 )['normal']
 
                 card_image = self.get_card_image(uri=uri)
+                card_image = Image.open(BytesIO(card_image))
+
+                if foil:
+                    fnt = ImageFont.truetype("Beleren-Bold.ttf", 40)
+                    draw = ImageDraw.Draw(card_image)
+                    draw.text((40, 70), "FOIL", font=fnt, fill=(255, 255, 255))
+
                 image.paste(
-                    Image.open(BytesIO(card_image)),
+                    card_image,
                     box=image_box
                 )
                 index = index + 1
@@ -308,7 +326,7 @@ class booster_builder():
         p = Path(__file__).with_name('sets.csv')
         with p.open('r', encoding='utf8') as set_list:
             for set_info in set_list.readlines():
-                split_info = set_info.strip().split(',')
+                split_info = set_info.strip().split(',', 3)
                 if (
                     not booster_sets
                     or (split_info[3] not in 'YZ'
@@ -375,7 +393,7 @@ if __name__ == '__main__':
     set_dict = {}
     with open('sets.csv', 'r', encoding='utf8') as set_list:
         for set_info in set_list.readlines():
-            split_info = set_info.strip().split(',')
+            split_info = set_info.strip().split(',', 3)
             set_dict[split_info[0]] = split_info[1:]
 
     code_list = []
