@@ -18,7 +18,7 @@ class booster_parser:
     def parse(booster_string):
         queries = []
         elements = booster_string.string.split('.')
-        pattern = r'(\d+)([bcurm])\[?([^\]]*)\]?'
+        pattern = r'(\d+)([bcurm])\[?([^\*\]]*)\]?\*?'
         for element in elements:
             # Get the elements
             m = re.match(pattern, element)
@@ -28,12 +28,15 @@ class booster_parser:
             if rarity == 'b':
                 query = '&unique=prints&q=t:basic ' + extra
             else:
-                query = f'&q=r:{rarity} -t:basic' + extra
+                query = f'&q=r:{rarity} -t:basic ' + extra
             queries.append((count, query))
         return queries
 
 
 class booster_modifier:
+
+    def n(self, booster, arg, set=None):
+        return booster
 
     def add(self, booster, element, position=0):
         split_booster = booster.string.split('.')
@@ -64,18 +67,26 @@ class booster_modifier:
 
     def mythicify(self, booster, set=None, odds=None):
         elements = booster.string.split('.')
-        if 'r' not in elements:
+        # Find the first rare placement
+        for r_pos, element in enumerate(elements):
+            m = re.match(r'(\d+)r.*', element)
+            if m:
+                break
+        # If no rares are found, skip the process
+        if not m:
             print('No rare to mythicify')
             return
+
+        # Get the mythic odds for the given set
         if set:
-            ms = len(vizualizer().get_cards(f's:{set}, r=m'))
-            rs = len(vizualizer().get_cards(f's:{set}, r=r'))
+            ms = len(vizualizer().get_cards(f'&q=s:{set}, r=m'))
+            rs = len(vizualizer().get_cards(f'&q=s:{set}, r=r'))
             odds = [ms, rs * 2]
         # Standard mythic distribution
         if not odds:
             odds = [15, 106]
-        r_pos = elements.index('r')
 
+        # Roll the odds
         if random.choices([True, False], odds)[0]:
             self.remove(booster, r_pos)
             self.add(booster, '1m', r_pos)
@@ -97,7 +108,7 @@ class booster_modifier:
             odds = foil_odds
         # Assumes 1:3:4 rare/mythic:uncommon:common foil sheets
         elif set:
-            base = f's:{set}, '
+            base = f'&q=s:{set}, '
             ms = len(vizualizer().get_cards(base + 'r=m'))
             rs = len(vizualizer().get_cards(base + 'r=r'))
             us = len(vizualizer().get_cards(base + 'r=u'))
@@ -116,7 +127,7 @@ class booster_modifier:
         # A foil replaces the common in standard sets
         elements = booster.string.split('.')
         for x_pos, elem in enumerate(elements):
-            if re.search(f'\\d+{to_replace}.*'):
+            if re.search(f'\\d+{to_replace}.*', elem):
                 break
         self.remove(booster, x_pos)
         self.add(booster, f'1{foil_rarity}*', -1)
@@ -170,7 +181,7 @@ class booster_modifier:
             # A basic replaces a common in standard sets
             elements = booster.string.split('.')
             for x_pos, elem in enumerate(elements):
-                if re.search(f'\\d+c.*'):
+                if re.search(f'\\d+c.*', elem):
                     break
             self.remove(booster, x_pos)
             self.add(booster, '1b', -1)
@@ -187,7 +198,7 @@ class booster_modifier:
         if not mod_string or mod_string == 'X':
             return
         for mod in mod_string.split('.'):
-            self.mod_dict[mod](self, booster, set=set)
+            (self.mod_dict.get(mod) or self.n)(self, booster, set=set)
 
 
 class vizualizer:
@@ -223,12 +234,18 @@ class vizualizer:
 
         time.sleep(0.1)
         if uri:
-            result = requests.get(uri).content
+            result = requests.get(uri)
         else:
             result = requests.get(
                 'https://api.scryfall.com/cards/'
                 f'named?exact={cardname}&format=image&version={version}'
-            ).content
+            )
+
+        if result.status_code == 200:
+            result = result.content
+        else:
+            print(requests.exceptions.HTTPError)
+            return None
 
         return result
 
@@ -267,9 +284,12 @@ class vizualizer:
                     card_size[1] * (index // 5)
                 )
 
-                front_uri = card['image_uris']['normal']
+                uri = (
+                    card.get('image_uris')
+                    or card['card_faces'][0]['image_uris']
+                )['normal']
 
-                card_image = self.get_card_image(uri=front_uri)
+                card_image = self.get_card_image(uri=uri)
                 image.paste(
                     Image.open(BytesIO(card_image)),
                     box=image_box
@@ -280,14 +300,21 @@ class vizualizer:
 
 
 class booster_builder():
-    def get_random_boosters(n_players, n_packs, unique_packs=True, booster_sets=True):
+    def get_random_boosters(
+        n_players, n_packs, unique_packs=True, booster_sets=True
+    ):
         set_dict = {}
 
         p = Path(__file__).with_name('sets.csv')
         with p.open('r', encoding='utf8') as set_list:
             for set_info in set_list.readlines():
                 split_info = set_info.strip().split(',')
-                if not booster_sets or (split_info[3] not in 'YZ' and split_info[2] in ['core', 'expansion', 'masters']):
+                if (
+                    not booster_sets
+                    or (split_info[3] not in 'YZ'
+                        and split_info[2] in ['core', 'expansion', 'masters']
+                        )
+                ):
                     set_dict[split_info[0]] = split_info[1:]
 
         set_codes = list(set_dict.keys())
