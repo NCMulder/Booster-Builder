@@ -48,7 +48,7 @@ PSTH,Stronghold Promos,promo,Z
 EXO,Exodus,expansion,
 PEXO,Exodus Promos,promo,Z
 P02,Portal Second Age,expansion,
-UGL,Unglued,funny,X
+UGL,Unglued,funny,R[0;4].R[1;1].B
 TUGL,Unglued Tokens,token,Z
 WC98,World Championship Decks 1998,memorabilia,Z
 PALP,Asia Pacific Land Program,promo,Z
@@ -64,7 +64,7 @@ UDS,Urza's Destiny,expansion,F
 PUDS,Urza's Destiny Promos,promo,Z
 S99,Starter 1999,starter,B.B
 PPTK,Portal: Three Kingdoms Promos,promo,Z
-PTK,Portal Three Kingdoms,starter,X
+PTK,Portal Three Kingdoms,starter,R[0;4].R[1;1].B.B
 PGRU,Guru,promo,Z
 PWOR,World Championship Promos,promo,Z
 WC99,World Championship Decks 1999,memorabilia,Z
@@ -175,7 +175,7 @@ CSP,Coldsnap,expansion,F
 CST,Coldsnap Theme Decks,box,Z
 PCSP,Coldsnap Promos,promo,Z
 TSB,Time Spiral Timeshifted,expansion,Z
-TSP,Time Spiral,expansion,X
+TSP,Time Spiral,expansion,R[0;1].A["1x[s:TSB]";-1]
 PTSP,Time Spiral Promos,promo,Z
 HHO,Happy Holidays,funny,Z
 F07,Friday Night Magic 2007,promo,Z
@@ -184,7 +184,7 @@ G07,Judge Gift Cards 2007,promo,Z
 PMPS07,Magic Premiere Shop 2007,promo,Z
 PG07,Gateway 2007,promo,Z
 PRES,Resale Promos,promo,Z
-PLC,Planar Chaos,expansion,X
+PLC,Planar Chaos,expansion,R[0;3].R[1;1].A["3c[frame:colorshifted]";-1].A["1x[r>u frame:colorshifted]";-1]
 PPLC,Planar Chaos Promos,promo,Z
 PPRO,Pro Tour Promos,promo,Z
 PGPX,Grand Prix Promos,promo,Z
@@ -391,7 +391,7 @@ TDAG,Defeat a God,token,Z
 TMD1,Modern Event Deck 2014 Tokens,token,Z
 MD1,Modern Event Deck 2014,box,Z
 TCNS,Conspiracy Tokens,token,Z
-CNS,Conspiracy,draft_innovation,X
+CNS,Conspiracy,draft_innovation,R[0;1].A["1x[wm:conspiracy]";-1]
 PCNS,Conspiracy Promos,promo,Z
 VMA,Vintage Masters,masters,Z
 PS14,San Diego Comic-Con 2014,promo,Z
@@ -466,7 +466,7 @@ TEMN,Eldritch Moon Tokens,token,X
 PEMN,Eldritch Moon Promos,promo,X
 V16,From the Vault: Lore,from_the_vault,X
 TCN2,Conspiracy: Take the Crown Tokens,token,X
-CN2,Conspiracy: Take the Crown,draft_innovation,X
+CN2,Conspiracy: Take the Crown,draft_innovation,R[0;1].A["1x[wm:conspiracy]";-1]
 DDR,Duel Decks: Nissa vs. Ob Nixilis,duel_deck,X
 MPS,Kaladesh Inventions,masterpiece,X
 TKLD,Kaladesh Tokens,token,X

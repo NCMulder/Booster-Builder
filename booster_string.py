@@ -16,10 +16,10 @@ class booster_string:
 
 
 class booster_parser:
-    def parse(booster_string):
+    def parse(booster_string, set='LEA'):
         queries = []
         elements = booster_string.string.split('.')
-        pattern = r'(\d+)([bcurm])\[?([^\*\]]*)\]?(\*)?'
+        pattern = r'(\d+)([bcurmx])\[?([^\*\]]*)\]?(\*)?'
         for element in elements:
             # Get the elements
             m = re.match(pattern, element)
@@ -27,11 +27,18 @@ class booster_parser:
             rarity = m.group(2)
             extra = m.group(3)
             foil = m.group(4)
-            if rarity == 'b':
+            if rarity == 'x':
+                if not extra:
+                    print('Found no search arguments, skipping ' + element)
+                '&q' + extra
+            elif rarity == 'b':
                 query = '&unique=prints&q=t:basic ' + extra
             else:
                 query = f'&q=r:{rarity} -t:basic ' + extra
+            if 's:' not in extra:
+                query = query + f' s:{set}'
             queries.append((count, query, foil))
+        print(queries)
         return queries
 
 
@@ -230,7 +237,7 @@ class vizualizer:
         return cards
 
     def get_booster_json(self, booster, set):
-        queries = booster_parser.parse(booster)
+        queries = booster_parser.parse(booster, set=set)
         booster_cards = []
         for count, query, foil in queries:
             cards = self.get_cards(query + f'+s:{set}')
@@ -261,7 +268,7 @@ class vizualizer:
         return result
 
     def print(self, booster, set):
-        queries = booster_parser.parse(booster)
+        queries = booster_parser.parse(booster, set=set)
         booster_cards = []
         for count, query, foil in queries:
             cards = self.get_cards(query + f'+s:{set}')
@@ -275,7 +282,7 @@ class vizualizer:
         from io import BytesIO
 
         card_size = [488, 680]
-        queries = booster_parser.parse(booster)
+        queries = booster_parser.parse(booster, set=set)
         total = sum([count for count, _, _ in queries])
 
         image = Image.new(
@@ -286,7 +293,7 @@ class vizualizer:
 
         index = 0
         for count, query, foil in queries:
-            cards = self.get_cards(query + f'+s:{set}')
+            cards = self.get_cards(query)
             card_sample = random.sample(cards, k=count)
 
             for card in card_sample:
